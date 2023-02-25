@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/attachDeviceScreenFragment">
+
+    <fragment
+        android:id="@+id/attachDeviceScreenFragment"
+        android:name="org.rriv.android.attachDevice.AttachDeviceScreenFragment"
+        android:label="fragment_attach_device_screen"
+        tools:layout="@layout/fragment_attach_device_screen" >
+        <action
+            android:id="@+id/action_attachDeviceScreenFragment_to_outputScreenFragment"
+            app:destination="@id/outputScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/outputScreenFragment"
+        android:name="org.rriv.android.results.OutputScreenFragment"
+        android:label="fragment_output_screen"
+        tools:layout="@layout/fragment_output_screen" >
+        <action
+            android:id="@+id/action_outputScreenFragment_to_attachDeviceScreenFragment"
+            app:destination="@id/attachDeviceScreenFragment" />
+    </fragment>
+</navigation>

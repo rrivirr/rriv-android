@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../rriv/RRIV2/app/src/main/res/drawable/ic_rriv.xml" value="0.2085" />
+        <entry key="../../rriv/RRIV2/app/src/main/res/drawable/ic_usb_not_connected.xml" value="0.2085" />
+        <entry key="../../rriv/RRIV2/app/src/main/res/font/roboto_thin.xml" value="0.1375" />
         <entry key="../../rriv/RRIV2/app/src/main/res/layout/activity_main.xml" value="0.2453125" />
         <entry key="../../rriv/RRIV2/app/src/main/res/layout/activity_splash.xml" value="0.2453125" />
+        <entry key="../../rriv/RRIV2/app/src/main/res/layout/fragment_attach_device_screen.xml" value="0.25" />
+        <entry key="../../rriv/RRIV2/app/src/main/res/layout/fragment_output_screen.xml" value="0.23125" />
       </map>
     </option>
   </component>
