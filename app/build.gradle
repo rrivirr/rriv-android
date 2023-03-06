@@ -60,5 +60,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.4"
     // work manager
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
+    implementation 'com.github.felHR85:UsbSerial:6.1.0'
 
 }
