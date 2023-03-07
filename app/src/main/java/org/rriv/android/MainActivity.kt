@@ -11,5 +11,6 @@ class MainActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         if (actionBar != null) actionBar.hide()
         setContentView(R.layout.activity_main)
+
     }
 }

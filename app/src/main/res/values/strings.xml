@@ -3,4 +3,6 @@
     <string name="river_restoration_intelligence_and_verification">River Restoration Intelligence and Verification</string>
     <string name="not_connected">Not Connected</string>
     <string name="attach_rriv_device">Attach RRIV device</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
