@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "676690466030",
+    "project_id": "rriv-7d133",
+    "storage_bucket": "rriv-7d133.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676690466030:android:89b2c368e78612bb7bcfff",
+        "android_client_info": {
+          "package_name": "org.rriv.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676690466030-av6qb42v7uqjguf536hgfs9j405s3a1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYYyI--bUwQ6Bz6rzJhljZtbVeTWC8x7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676690466030-av6qb42v7uqjguf536hgfs9j405s3a1q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
