@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.hoho.android.usbserial.driver.UsbSerialDriver
@@ -46,10 +47,15 @@ class AttachDeviceScreenFragment : Fragment() {
         binding.buttonMonitor.setOnClickListener {
             refresh()
             if(listItems.isNotEmpty()){
-            binding.textViewStaus.text = "USB accessory detected"
+                binding.textViewStaus.text = "USB accessory detected"
+                binding.imageViewUsbStatus.setImageDrawable(
+                    ResourcesCompat.getDrawable(requireActivity().resources,R.drawable.usb_connected, null)!!
+                )
             } else {
                 binding.textViewStaus.text = "No USB accessory detected"
-
+                binding.imageViewUsbStatus.setImageDrawable(
+                    ResourcesCompat.getDrawable(requireActivity().resources,R.drawable.usb_not_connected, null)!!
+                        )
             }
         }
         return binding.root  }
