@@ -1,11 +1,14 @@
 package org.rriv.android.results
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import org.rriv.android.R
 
 class OutputScreenFragment : Fragment() {
@@ -27,6 +30,23 @@ class OutputScreenFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(OutputScreenViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+    fun status(str: String) {
+        val spn = SpannableStringBuilder(
+            """
+              $str
+              
+              """.trimIndent()
+        )
+    /*    spn.setSpan(
+            ForegroundColorSpan(resources.getColor(R.color.colorStatusText)),
+            0,
+            spn.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        receiveText.append(spn)
+
+     */
     }
 
 }
