@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialProber
 import org.rriv.android.R
@@ -44,8 +45,12 @@ class AttachDeviceScreenFragment : Fragment() {
     ): View? {
         val binding: FragmentAttachDeviceScreenBinding = FragmentAttachDeviceScreenBinding.inflate(inflater,container,false)
         refresh()
+
+
         binding.buttonMonitor.setOnClickListener {
-            refresh()
+            findNavController().navigate(R.id.action_attachDeviceScreenFragment_to_outputScreenFragment)
+
+          /*  refresh()
             if(listItems.isNotEmpty()){
                 binding.textViewStaus.text = "USB accessory detected"
                 binding.imageViewUsbStatus.setImageDrawable(
@@ -56,9 +61,10 @@ class AttachDeviceScreenFragment : Fragment() {
                 binding.imageViewUsbStatus.setImageDrawable(
                     ResourcesCompat.getDrawable(requireActivity().resources,R.drawable.usb_not_connected, null)!!
                         )
-            }
+            }*/
         }
-        return binding.root  }
+        return binding.root
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
