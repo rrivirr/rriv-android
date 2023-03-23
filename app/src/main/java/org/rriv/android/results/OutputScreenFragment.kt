@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
@@ -21,11 +21,8 @@ import org.rriv.android.databinding.FragmentOutputScreenBinding
 
 class OutputScreenFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = OutputScreenFragment()
-    }
 
-    private lateinit var viewModel: OutputScreenViewModel
+    private val viewModel: OutputScreenViewModel by viewModels()
     private lateinit var binding: FragmentOutputScreenBinding
 
     override fun onCreateView(
@@ -35,12 +32,34 @@ class OutputScreenFragment : Fragment() {
         binding = FragmentOutputScreenBinding.inflate(inflater,container,false)
         setUpLineChart()
         setDataToLineChart()
+        binding.apply { 
+            checkBoxConductivity.setOnCheckedChangeListener { compoundButton, isChecked ->
+                viewModel.updateConductivity(isChecked)
+                setDataToLineChart()
+            }
+            checkBoxCh4.setOnCheckedChangeListener { compoundButton, isChecked ->
+                viewModel.updateCh4(isChecked)
+                setDataToLineChart()
+            }
+            checkBoxTemperature.setOnCheckedChangeListener { compoundButton, isChecked ->
+                viewModel.updateTemperature(isChecked)
+                setDataToLineChart()
+            }
+            checkBoxCo2.setOnCheckedChangeListener { compoundButton, isChecked ->
+                viewModel.updateCo2(isChecked)
+                setDataToLineChart()
+            }
+            checkBoxPh.setOnCheckedChangeListener { compoundButton, isChecked ->
+                viewModel.updatePh(isChecked)
+                setDataToLineChart()
+            }
+        }
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(OutputScreenViewModel::class.java)
+//        viewModel = ViewModelProvider(this).get(OutputScreenViewModel::class.java)
         // TODO: Use the ViewModel
     }
     fun status(str: String) {
@@ -69,11 +88,11 @@ class OutputScreenFragment : Fragment() {
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.granularity = 1F
 //            xAxis.valueFormatter = MyAxisFormatter()
-
+            //TODO(Create suitable axis formatter for double values)
             axisRight.isEnabled = false
             extraRightOffset = 30f
 
-            legend.orientation = Legend.LegendOrientation.VERTICAL
+            legend.orientation = Legend.LegendOrientation.HORIZONTAL
             legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
             legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
             legend.textSize = 15F
@@ -124,11 +143,11 @@ class OutputScreenFragment : Fragment() {
 
 
         val dataSet = ArrayList<ILineDataSet>()
-        dataSet.add(conductivityDataSet)
-        dataSet.add(temperatureDataSet)
-        dataSet.add(co2DataSet)
-        dataSet.add(ch4DataSet)
-        dataSet.add(phDataSet)
+        if (viewModel.state.value?.conductivity!!) dataSet.add(conductivityDataSet)
+        if (viewModel.state.value?.temperature!!) dataSet.add(temperatureDataSet)
+        if (viewModel.state.value?.co2!!) dataSet.add(co2DataSet)
+        if (viewModel.state.value?.ch4!!) dataSet.add(ch4DataSet)
+        if (viewModel.state.value?.ph!!) dataSet.add(phDataSet)
 
         val lineData = LineData(dataSet)
         binding.chart.data = lineData
@@ -136,53 +155,53 @@ class OutputScreenFragment : Fragment() {
         binding.chart.invalidate()
     }
     private fun fakedata1(): ArrayList<Entry> {
-        val sales = ArrayList<Entry>()
-        sales.add(Entry(0f, 15f))
-        sales.add(Entry(1f, 16f))
-        sales.add(Entry(2f, 13f))
-        sales.add(Entry(3f, 22f))
-        sales.add(Entry(4f, 20f))
-        return sales
+        val data = ArrayList<Entry>()
+        data.add(Entry(0f, 15f))
+        data.add(Entry(1f, 16f))
+        data.add(Entry(2f, 13f))
+        data.add(Entry(3f, 22f))
+        data.add(Entry(4f, 20f))
+        return data
     }
 
     private fun fakedata2(): ArrayList<Entry> {
-        val sales = ArrayList<Entry>()
-        sales.add(Entry(1f, 11f))
-        sales.add(Entry(1.4f, 13.9f))
-        sales.add(Entry(6f, 4f))
-        sales.add(Entry(3.4f, 16f))
-        sales.add(Entry(4f, 28f))
-        return sales
+        val data = ArrayList<Entry>()
+        data.add(Entry(0f, 11f))
+        data.add(Entry(1f, 13f))
+        data.add(Entry(3f, 4f))
+        data.add(Entry(4f, 16f))
+        data.add(Entry(5f, 28f))
+        return data
     }
 
     private fun fakedata3(): ArrayList<Entry> {
-        val sales = ArrayList<Entry>()
-        sales.add(Entry(0.5f, 14f))
-        sales.add(Entry(1.4f, 15f))
-        sales.add(Entry(2f, 24f))
-        sales.add(Entry(3f, 21f))
-        sales.add(Entry(5f, 20f))
-        return sales
+        val data = ArrayList<Entry>()
+        data.add(Entry(0.5f, 14f))
+        data.add(Entry(1.4f, 15f))
+        data.add(Entry(2f, 24f))
+        data.add(Entry(3f, 21f))
+        data.add(Entry(5f, 20f))
+        return data
     }
 
     private fun fakedata4(): ArrayList<Entry> {
-        val sales = ArrayList<Entry>()
-        sales.add(Entry(0f, 11f))
-        sales.add(Entry(1f, 13f))
-        sales.add(Entry(2f, 18f))
-        sales.add(Entry(3f, 16f))
-        sales.add(Entry(4f, 22f))
-        return sales
+        val data = ArrayList<Entry>()
+        data.add(Entry(0f, 11f))
+        data.add(Entry(1f, 13f))
+        data.add(Entry(2f, 18f))
+        data.add(Entry(3f, 16f))
+        data.add(Entry(4f, 22f))
+        return data
     }
 
     private fun fakedata5(): ArrayList<Entry> {
-        val sales = ArrayList<Entry>()
-        sales.add(Entry(0f, 11f))
-        sales.add(Entry(1f, 9f))
-        sales.add(Entry(2.6f, 14f))
-        sales.add(Entry(4f, 25f))
-        sales.add(Entry(8f, 21f))
-        return sales
+        val data = ArrayList<Entry>()
+        data.add(Entry(0f, 11f))
+        data.add(Entry(1f, 9f))
+        data.add(Entry(2.6f, 14f))
+        data.add(Entry(4f, 25f))
+        data.add(Entry(8f, 21f))
+        return data
     }
 
     inner class MyAxisFormatter : IndexAxisValueFormatter() {
