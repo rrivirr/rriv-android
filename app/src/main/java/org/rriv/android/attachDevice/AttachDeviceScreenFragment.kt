@@ -3,6 +3,7 @@ package org.rriv.android.attachDevice
 import android.content.Context
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +14,12 @@ import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialProber
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.rriv.android.R
 import org.rriv.android.databinding.FragmentAttachDeviceScreenBinding
 import org.rriv.android.results.OutputScreenFragment
@@ -44,21 +49,30 @@ class AttachDeviceScreenFragment : Fragment() {
     ): View? {
         val binding: FragmentAttachDeviceScreenBinding = FragmentAttachDeviceScreenBinding.inflate(inflater,container,false)
         refresh()
+
+
         binding.buttonMonitor.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             refresh()
             if(listItems.isNotEmpty()){
-                binding.textViewStaus.text = "USB accessory detected"
+                binding.textViewStatus.text = "USB accessory detected"
                 binding.imageViewUsbStatus.setImageDrawable(
                     ResourcesCompat.getDrawable(requireActivity().resources,R.drawable.usb_connected, null)!!
                 )
             } else {
-                binding.textViewStaus.text = "No USB accessory detected"
+                binding.textViewStatus.text = "No USB accessory detected"
                 binding.imageViewUsbStatus.setImageDrawable(
                     ResourcesCompat.getDrawable(requireActivity().resources,R.drawable.usb_not_connected, null)!!
                         )
             }
+            lifecycleScope.launch {
+                delay(2500)
+                findNavController().navigate(R.id.action_attachDeviceScreenFragment_to_outputScreenFragment)
+                binding.progressBar.visibility = View.GONE
+            }
         }
-        return binding.root  }
+        return binding.root
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

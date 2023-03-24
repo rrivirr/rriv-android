@@ -3,4 +3,17 @@
     <string name="river_restoration_intelligence_and_verification">River Restoration Intelligence and Verification</string>
     <string name="not_connected">Not Connected</string>
     <string name="attach_rriv_device">Attach RRIV device</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="conductivity">Conductivity</string>
+    <string name="CO2">co2</string>
+    <string name="ch4">CH4</string>
+    <string name="ph">pH</string>
 </resources>

@@ -1,13 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".results.OutputScreenFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Output Screen" />
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-</FrameLayout>
+    <CheckBox
+        android:id="@+id/checkBoxConductivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:paddingEnd="10dp"
+        android:checked = "true"
+        android:text="@string/conductivity"
+        app:buttonTint="@color/primary"
+        app:layout_constraintStart_toStartOf="@+id/chart"
+        app:layout_constraintTop_toBottomOf="@+id/chart" />
+
+    <CheckBox
+        android:id="@+id/checkBoxTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Temperature"
+        android:paddingEnd="10dp"
+        android:checked = "true"
+        app:buttonTint="@color/primary"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxConductivity"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxConductivity" />
+
+    <CheckBox
+        android:id="@+id/checkBoxCh4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingEnd="10dp"
+        android:text="@string/ch4"
+        app:buttonTint="@color/primary"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxTemperature"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxTemperature" />
+
+    <CheckBox
+        android:id="@+id/checkBoxCo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingEnd="10dp"
+        android:text="@string/CO2"
+        app:buttonTint="@color/primary"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxCh4"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxCh4" />
+
+    <CheckBox
+        android:id="@+id/checkBoxPh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingEnd="10dp"
+        android:text="@string/ph"
+        app:buttonTint="@color/primary"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxCo2"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxCo2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
